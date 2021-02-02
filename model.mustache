@@ -1,0 +1,23 @@
+<?php
+
+declare(strict_types=1);
+
+{{>licenseInfo}}
+
+{{#models}}{{#model}}/**
+ * {{classname}}
+ */
+namespace {{modelPackage}};
+
+/**
+ * {{classname}}
+ */
+class {{classname}} {
+
+    {{#vars}}
+    /** @var {{dataType}} ${{name}} {{#description}}{{description}}{{/description}}*/
+    private {{dataType}} ${{name}};
+
+    {{/vars}}
+}
+{{/model}}{{/models}}

@@ -1,0 +1,31 @@
+<?php
+
+declare(strict_types=1);
+
+{{>licenseInfo}}
+
+namespace aems\api\sell\tests;
+
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Request;
+use PHPUnit\Framework\TestCase;
+
+final class IndexTest extends TestCase
+{
+
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function testFullSellSaveAction(): void
+    {
+        $client = new Client();
+        $json = file_get_contents('./tests/hoppscotch_input.json');
+        $response = $client->request(
+            'POST',
+            'http://sell.api.aems.vm/save',
+            ['json' => $json]
+        );
+        dump($response->getBody());
+        $this->assertEquals('200', $response->getStatusCode());
+    }
+}
